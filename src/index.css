@@ -1,0 +1,182 @@
+/* ==========================================================================
+   OVERWATCH META TIER HUB - DESIGN SYSTEM & TOKENS
+   ========================================================================== */
+
+:root {
+  /* Core Backgrounds */
+  --bg-deep: #080b11;
+  --bg-base: #0d121c;
+  --bg-surface: #131b2a;
+  --bg-surface-hover: #1c273c;
+  --bg-surface-active: #223049;
+  --bg-glass: rgba(15, 22, 35, 0.82);
+  --bg-glass-subtle: rgba(25, 36, 56, 0.45);
+
+  /* Overwatch Brand Accents */
+  --ow-orange: #f99e1a;
+  --ow-orange-hover: #ffad33;
+  --ow-orange-glow: rgba(249, 158, 26, 0.4);
+  --ow-blue: #00e5ff;
+  --ow-blue-glow: rgba(0, 229, 255, 0.35);
+
+  /* Role System */
+  --tank-color: #00a6ff;
+  --tank-glow: rgba(0, 166, 255, 0.35);
+  --tank-bg: rgba(0, 166, 255, 0.12);
+
+  --damage-color: #ff3b53;
+  --damage-glow: rgba(255, 59, 83, 0.35);
+  --damage-bg: rgba(255, 59, 83, 0.12);
+
+  --support-color: #00e676;
+  --support-glow: rgba(0, 230, 118, 0.35);
+  --support-bg: rgba(0, 230, 118, 0.12);
+
+  /* Tier Grading Colors */
+  --tier-s-color: #ff2d55;
+  --tier-s-glow: rgba(255, 45, 85, 0.5);
+  --tier-s-bg: linear-gradient(135deg, rgba(255, 45, 85, 0.25), rgba(255, 107, 107, 0.12));
+
+  --tier-a-color: #ff9100;
+  --tier-a-glow: rgba(255, 145, 0, 0.5);
+  --tier-a-bg: linear-gradient(135deg, rgba(255, 145, 0, 0.22), rgba(255, 183, 77, 0.1));
+
+  --tier-b-color: #00b0ff;
+  --tier-b-glow: rgba(0, 176, 255, 0.5);
+  --tier-b-bg: linear-gradient(135deg, rgba(0, 176, 255, 0.2), rgba(64, 196, 255, 0.08));
+
+  --tier-c-color: #9c27b0;
+  --tier-c-glow: rgba(156, 39, 176, 0.4);
+  --tier-c-bg: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(186, 104, 200, 0.08));
+
+  --tier-d-color: #78909c;
+  --tier-d-glow: rgba(120, 144, 156, 0.3);
+  --tier-d-bg: linear-gradient(135deg, rgba(120, 144, 156, 0.15), rgba(144, 164, 174, 0.06));
+
+  /* Typography */
+  --font-main: 'Outfit', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Rajdhani', 'Outfit', sans-serif;
+
+  /* Text Colors */
+  --text-primary: #f0f4fc;
+  --text-secondary: #9aa8c2;
+  --text-muted: #5e6d88;
+  --text-inverse: #080b11;
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-highlight: rgba(249, 158, 26, 0.5);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-glow: 0 0 24px var(--ow-orange-glow);
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Overwatch High-Tech Grid & Glow Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(249, 158, 26, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 90% 40%, rgba(0, 229, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: #23314a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ow-orange);
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Cyber Slant Cuts */
+.cut-corner {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.cut-corner-sm {
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+/* Glass panel */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
